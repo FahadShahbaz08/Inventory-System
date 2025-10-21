@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class RayThrowringSystem : MonoBehaviour
 {
@@ -11,12 +12,15 @@ public class RayThrowringSystem : MonoBehaviour
 
     private void ThrowRay()
     {
-        Ray ray = new Ray (transform.position + offset, transform.forward * distance);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        Vector3 startPos = transform.position + offset;
+        Vector3 endPos = transform.forward;
+
+        Ray ray = new Ray (startPos, endPos);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, distance))
         {
             print(hitInfo.transform.gameObject.name);
         }
 
-        Debug.DrawLine(transform.position + offset, transform.forward * distance, Color.red);
+        Debug.DrawLine(startPos, startPos + endPos * distance, Color.red);
     }
 }
