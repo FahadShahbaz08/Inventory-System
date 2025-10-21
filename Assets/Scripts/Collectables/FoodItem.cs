@@ -10,6 +10,7 @@ public class FoodItem : Item
     public override void Collect()
     {
         print($"{itemName} is collected");
+        GameManager.instance.IterateFoodCount();
         Destroy(this.gameObject);
     }
 }
