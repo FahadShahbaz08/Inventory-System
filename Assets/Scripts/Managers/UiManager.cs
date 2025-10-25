@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UiManager : MonoBehaviour
@@ -8,11 +9,16 @@ public class UiManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI interactText;
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private Transform inventoryContent;
-    [SerializeField] private GameObject foodItemVisual;
-    [SerializeField] private GameObject survivalItemVisual;
+    [SerializeField] private InventoryDisplay inventoryDisplay;
+
+    private GameManager gameManager;
     private void Awake()
     {
         instance = this;
+    }
+    private void Start()
+    {
+        gameManager = GameManager.instance;
     }
     private void Update()
     {
@@ -43,23 +49,13 @@ public class UiManager : MonoBehaviour
         {
             Destroy(go.gameObject);
         }
-
-        if (GameManager.instance.GetFoodItemCount() > 0)
+        for(int i =0; i< gameManager._collectedItems.Count; i++)
         {
-            for (int i = 0; i < GameManager.instance.GetFoodItemCount(); i++)
-            {
-                Instantiate(foodItemVisual, inventoryContent);
-            }
-        }
+            print("hehe item is " + gameManager.GetTotalItemCount(gameManager.GetDicItemNumber(i)));
+            GameObject go = Instantiate(inventoryDisplay.gameObject, inventoryContent);
+            go.GetComponent<InventoryDisplay>().SetInventoryItemDisplay(gameManager.GetDicItemNumber(i).HumanName(),gameManager.GetTotalItemCount(gameManager.GetDicItemNumber(i)));
 
-        if (GameManager.instance.GetSurvivalItemCount() > 0)
-        {
-            for (int i = 0; i < GameManager.instance.GetSurvivalItemCount(); i++)
-            {
-                Instantiate(survivalItemVisual, inventoryContent);
-            }
         }
-
     }
 
     public void HideInventoryPanel()

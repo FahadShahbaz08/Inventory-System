@@ -3177,8 +3177,7 @@ MonoBehaviour:
   interactText: {fileID: 391045487}
   inventoryPanel: {fileID: 436375669}
   inventoryContent: {fileID: 825801907}
-  foodItemVisual: {fileID: 6311012770018174773, guid: 240caede14f15f7468a4860e2a901d08, type: 3}
-  survivalItemVisual: {fileID: 9200210379567113346, guid: 0c997b51a20027e46a72c3da64e489d8, type: 3}
+  inventoryDisplay: {fileID: 8665072879328814747, guid: 240caede14f15f7468a4860e2a901d08, type: 3}
 --- !u!4 &1595096351
 Transform:
   m_ObjectHideFlags: 0
